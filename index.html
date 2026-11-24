@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>ElderEase: Assistive Home Robot Routines</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@stlite/browser@0.85.1/build/style.css"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module">
+      import { mount } from "https://cdn.jsdelivr.net/npm/@stlite/browser@0.85.1/build/stlite.js";
+      const response = await fetch("./app.py");
+      const appCode = await response.text();
+      mount(
+        {
+          requirements: ["pandas"],
+          entrypoint: "app.py",
+          files: {
+            "app.py": appCode,
+          },
+        },
+        document.getElementById("root"),
+      );
+    </script>
+  </body>
+</html>
